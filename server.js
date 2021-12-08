@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import { config as _config } from "dotenv";
 import User from "./routes/user.js";
 
@@ -16,10 +17,11 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("mongoDB is connected"))
-  .catch((err) => console.log(err));
+  .catch(err => console.log(err));
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Route
 app.use("/user", User);
